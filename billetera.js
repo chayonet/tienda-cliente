@@ -622,7 +622,7 @@ window.exportarMisMovimientosCSV = function() {
     const b = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
     const a = document.createElement('a');
     a.href = URL.createObjectURL(b);
-    a.download = `CHAYONET_Billetera_Historial_${new Date().toISOString().split('T')[0]}.csv`;
+    a.download = `${NOMBRE_NEGOCIO}_Billetera_Historial_${new Date().toISOString().split('T')[0]}.csv`;
     a.click();
     if(typeof mostrarToast === 'function') mostrarToast("Historial exportado con éxito", "success");
 };
