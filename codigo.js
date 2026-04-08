@@ -1,10 +1,10 @@
 const URL_MAESTRO = "https://script.google.com/macros/s/AKfycbwRoYj7ylZ32kD7BEaSkJxsgBYM7UZ_64TYMFgmuztjWZNKfLYktujOLwFf1Wengq40/exec";
 const LISTA_OBREROS = [
-    "https://script.google.com/macros/s/AKfycbxRf-m0Z3xjDwRrps5Ia3zdGZtWKioxPj3h3nrexlCzOawt7fzdFgeC_xeqj-zsCJzCrA/exec",
-    "https://script.google.com/macros/s/AKfycbyHVbLbV2jhNYPDyxjmp9yIKO9HWAl3IxvO1qAuvMRlVZdFUCGD88U6OsJw8mnpSS3X/exec",
-    "https://script.google.com/macros/s/AKfycbyD_7GCUkn2t5O7kl95mU7riGMOiy0hNJtPduv6Sf_37mxfSm50OnMn4aRWlsl7wN7e/exec",
-    "https://script.google.com/macros/s/AKfycbxUuHwtfFTW2bnOUBHkw3TkVVoQi9hH4Kk_y96T6XIC6VMwl9qeZmZZckmoySgZnXil/exec",
-    "https://script.google.com/macros/s/AKfycbw-V7SRUufYl5hkAWcLV8ajQbCa0vzTD3iwklRas2_ddY4YAzzVAE59XgdeVmLmUrBRDQ/exec"
+    "https://script.google.com/macros/s/AKfycbxqnN0VLkZ4jCpK-n1z9fB5g3c00MYpN-gZfS3-AbSEU8n4s1quQ1mmqniVk608Wue8kw/exec",
+    "https://script.google.com/macros/s/AKfycbwQBsj-vzRV8n3WvHZWN6XUwDOkQAIocX4Ekw55DkXf564eQ0-OmH9QjF-lC34VAEDp/exec",
+    "https://script.google.com/macros/s/AKfycbzNrizm-uA6OC7LCfAdbbaErpmd9ZEFyRQoOfIuzzDhk9g9kkMydIZ5pRHm5N0xXTrbIQ/exec",
+    "https://script.google.com/macros/s/AKfycby1miQvZyaD_okOoW7J5P9roOTb5WGl8O24yw6JprW7H2UvmVAcZmc6_fQfcfQld9S-/exec",
+    "https://script.google.com/macros/s/AKfycbxJD_pa-gnDBnHPl-7PVVqjWsK0p8ETg4qtyG4s1zEYj8okFtlbQ26hdGm0VdX9VTUFHA/exec"
 ];
 
 const COOLDOWN_CODIGOS = 20; // Segundos
