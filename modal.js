@@ -224,7 +224,7 @@ window.abrirFacturaGlobal = async function(orderId) {
             const fmt = new Intl.NumberFormat('es-CO', { minimumFractionDigits: 0, maximumFractionDigits: 0 });
             
             let htmlFactura = `<div>`;
-            let textoFacturaCompleta = `🌟 CHAYONET - FACTURA DE COMPRA 🌟\nPEDIDO: ${orderId}\n\n`;
+            let textoFacturaCompleta = `🌟 ${NOMBRE_NEGOCIO} - FACTURA DE COMPRA 🌟\nPEDIDO: ${orderId}\n\n`;
 
             for (const srv in agrupacionServicios) {
                 const dataSrv = agrupacionServicios[srv];
