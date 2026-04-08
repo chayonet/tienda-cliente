@@ -1,4 +1,4 @@
-const API_URL = "https://api-ventas-zzd6.onrender.com/dw_api.php"; 
+const API_URL = "https://apis-yley.onrender.com/dw_api.php"; 
 let userBalance = 0;
 
 // --- 1. API FETCH GLOBAL ---
