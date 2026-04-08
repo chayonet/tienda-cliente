@@ -17,7 +17,7 @@ const WSP_ICON_ID = "12_hw1hRhhGNGv1UY7CX-YJajITFtrY-S";
 const WSP_ICON_URL = `https://drive.google.com/thumbnail?id=${WSP_ICON_ID}&sz=w200`;
 
 const GAS_URL = "https://script.google.com/macros/s/AKfycbwnMW1rwkNBVT_dn83D6QaSAfy3FEcHW_LUmFMIYmakptyAO8osELRvgRqxRopMdGe6/exec";
-const API_CLIENTE_URL = "https://api-ventas-zzd6.onrender.com/dw_api.php";
+const API_CLIENTE_URL = "https://apis-yley.onrender.com/dw_api.php";
 
 /**
  * 1. FUNCIÓN PRINCIPAL DE CARGA
