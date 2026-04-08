@@ -1,6 +1,5 @@
 /* =================================================================================
    ARCHIVO: recargas.js (LADO CLIENTE)
-   MÓDULO DE RECARGAS - DIGITAL WORLD 
    Lógica: Selección de montos, pago con IA, y registro en base de datos adaptativo.
 ================================================================================= */
 
