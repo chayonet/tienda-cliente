@@ -163,7 +163,7 @@ async function procesarPagoBancolombia() {
                     ${htmlBono}
                     <div class="banco-key-box" style="margin-top:15px;">
                         <span class="banco-key-label">Llave Bancolombia:</span>
-                        <div class="banco-key-value">@ronadl274</div>
+                        <div class="banco-key-value">@leon9922</div>
                     </div>
                 </div>
                 <div class="banco-glass-card" style="margin-top:15px;">
