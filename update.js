@@ -5,6 +5,18 @@
 
 const historicoVersiones = [
     {
+        version: "V.1.11.0",
+        fecha: "10/04/2026",
+        tipo: "Seguridad y Velocidad",
+        cambios: [
+            "Búsquedas ultrarrápidas: Nuestro sistema de códigos ahora escanea múltiples redes al mismo tiempo, entregándote tu acceso en tiempo récord.",
+            "Bandeja de entrada blindada: Añadimos una capa de máxima seguridad al leer los correos de las plataformas, protegiendo tu dispositivo de enlaces externos.",
+            "Fechas exactas en tu historial: Corregimos el reloj del sistema para que las compras o recargas nocturnas ya no aparezcan con la fecha de mañana.",
+            "Pagos validados al instante: Optimizamos el escáner de transferencias para no hacerte esperar de más si hay algún retraso temporal con el banco.",
+            "Transacciones 100% precisas: Blindamos el carrito de compras para garantizar que los cobros a tu saldo sean siempre exactos y a prueba de fallos de conexión."
+        ]
+    },
+    {
         version: "V.1.10.0",
         fecha: "08/04/2026",
         tipo: "Gran Lanzamiento",
