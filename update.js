@@ -5,6 +5,18 @@
 
 const historicoVersiones = [
     {
+        version: "V.1.12.0",
+        fecha: "13/04/2026",
+        tipo: "Máxima Velocidad y Blindaje",
+        cambios: [
+            "⚡ Compras múltiples al instante: Rediseñamos el motor del carrito. Ahora puedes llevarte 10 o 50 cuentas en un solo clic, sin tiempos de carga interminables. ¡Tu compra vuela!",
+            "🛡️ Billetera impenetrable: Añadimos una nueva capa de seguridad de nivel corporativo a tus recargas automáticas para proteger cada centavo de tu saldo con precisión absoluta.",
+            "🛒 Inventario 100% garantizado: Mejoramos el sistema de asignación de la tienda. Si el sistema te deja agregarlo al carrito, la entrega está garantizada sin errores de stock.",
+            "🔒 Privacidad absoluta: Elevamos los estándares de seguridad de la plataforma, garantizando que tus transacciones sean totalmente privadas y a prueba de manipulaciones.",
+            "🚀 Sistema de alto rendimiento: Optimizamos el cerebro de la tienda para procesar cientos de pedidos simultáneos de toda la comunidad sin que la web se ponga lenta."
+        ]
+    },
+    {
         version: "V.1.11.0",
         fecha: "10/04/2026",
         tipo: "Seguridad y Velocidad",
