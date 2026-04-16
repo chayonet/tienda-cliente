@@ -128,13 +128,13 @@ function enviarAlWhatsAppSimple() {
     if (!finalAmount || finalAmount <= 0) return Swal.fire({ title: 'Monto Requerido', text: 'Selecciona un paquete o ingresa un valor válido.', icon: 'warning', background: 'var(--bg-card)', color: 'var(--text-white)' });
     const u = localStorage.getItem('dw_user') || 'Cliente';
     const mensaje = `🌟 *SOLICITUD DE RECARGA* 🌟\n\n👤 *Usuario:* ${u}\n💰 *Monto:* $${new Intl.NumberFormat('es-CO').format(finalAmount)}`;
-    window.open(`https://wa.me/573016149753?text=${encodeURIComponent(mensaje)}`, '_blank');
+    window.open(`https://wa.me/573172391419?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
 function enviarAlWhatsAppSoporte(monto, nombre, fecha, hora) {
     const u = localStorage.getItem('dw_user') || 'Cliente';
     const mensaje = `Hola, hice una recarga de $${new Intl.NumberFormat('es-CO').format(monto)} pero la IA no la vio.\n👤 *Usuario:* ${u}\n📝 *Titular:* ${nombre}\n📅 *Fecha:* ${fecha} ${hora}`;
-    window.open(`https://wa.me/573016149753?text=${encodeURIComponent(mensaje)}`, '_blank');
+    window.open(`https://wa.me/573172391419?text=${encodeURIComponent(mensaje)}`, '_blank');
 }
 
 async function procesarPagoBancolombia() {
