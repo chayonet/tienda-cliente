@@ -50,7 +50,7 @@ function cargarCodigos() {
                             <button type="button" class="btn-service-brand" data-asunto="Verificación de Amazon" data-brand="Amazon">
                                 <span class="brand-icon">AMZ</span> Amazon
                             </button>
-                            <button type="button" class="btn-service-brand" data-asunto="Reset Your Crunchyroll Password||Restablece tu contraseña de Crunchyroll" data-brand="Crunchyroll">
+                            <button type="button" class="btn-service-brand" data-asunto="Reset Your Crunchyroll Password||Restablece tu contraseña de Crunchyroll" data-brand="Crunchy">
                                 <span class="brand-icon">CR</span> Crunchy
                             </button>
                         </div>
@@ -487,8 +487,8 @@ const codigosStyles = `
     .btn-service-brand[data-brand="Amazon"]:hover:not(:disabled) { border-color: #ff9900; color: #ff9900; background: rgba(255,153,0,0.05); }
     .btn-service-brand[data-brand="Amazon"].active { background: #ff9900; color: #000; border-color: #ff9900; box-shadow: 0 5px 15px rgba(255,153,0,0.3); }
 
-    .btn-service-brand[data-brand="Crunchyroll"]:hover:not(:disabled) { border-color: #f47521; color: #f47521; background: rgba(244,117,33,0.05); }
-    .btn-service-brand[data-brand="Crunchyroll"].active { background: #f47521; color: #000; border-color: #f47521; box-shadow: 0 5px 15px rgba(244,117,33,0.3); }
+    .btn-service-brand[data-brand="Crunchy"]:hover:not(:disabled) { border-color: #f47521; color: #f47521; background: rgba(244,117,33,0.05); }
+    .btn-service-brand[data-brand="Crunchy"].active { background: #f47521; color: #000; border-color: #f47521; box-shadow: 0 5px 15px rgba(244,117,33,0.3); }
 
     /* BOTON BUSCAR CORREO (ESTILO PREMIUM NEÓN) */
     #btnVerificarCod {
