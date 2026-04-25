@@ -1,7 +1,7 @@
 /* =================================================================================
    ARCHIVO: mistickets.js
    Lógica: Renderizado de Tickets, Buscador en Tiempo Real, Modal de Detalles.
-   (ACTUALIZADO: BUSCADOR PREMIUM INTEGRADO)
+   (ACTUALIZADO: BUSCADOR PREMIUM INTEGRADO E IMÁGENES ADJUNTAS CON THUMBNAIL Y VISOR)
 ================================================================================= */
 
 let cargandoTickets = false;
@@ -32,6 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(secMisTickets, { attributes: true });
     }
 });
+
+/**
+ * 🔥 FUNCIÓN AUXILIAR: Convertir a Thumbnail
+ */
+function convertirAThumbnailTicket(url) {
+    if (!url || url.trim() === "") return "";
+    if (url.includes("uc?export=view&id=")) {
+        return url.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w600";
+    }
+    return url;
+}
 
 /**
  * 2. FUNCIÓN PRINCIPAL: Obtener y renderizar los tickets (TIEMPO REAL)
@@ -175,8 +186,10 @@ function renderMisTickets(tickets) {
                      <span class="material-icons-round">lock</span> SOLUCIONADO
                    </div>`;
 
+            // Codificamos textos e imágenes para enviarlos sin romper el HTML
             const textoCodificado = encodeURIComponent((ticket.contexto || 'Sin detalles.').replace(/'/g, "%27"));
             const respCodificada = encodeURIComponent((ticket.respuesta || '').replace(/'/g, "%27"));
+            const imgCodificada = ticket.imagen_adjunta ? encodeURIComponent(ticket.imagen_adjunta) : '';
 
             // Añadimos datos clave como atributos para el buscador
             const card = document.createElement('div');
@@ -203,7 +216,7 @@ function renderMisTickets(tickets) {
                 </div>
                 
                 <div class="ticket-body">
-                    <div class="ticket-detail-btn" onclick="mostrarDetalleModal('${textoCodificado}', '${respCodificada}')">
+                    <div class="ticket-detail-btn" onclick="mostrarDetalleModal('${textoCodificado}', '${respCodificada}', '${imgCodificada}')">
                         <div class="ticket-detail-label">
                             <span class="material-icons-round">visibility</span> 
                             <span>LEER REPORTE COMPLETO</span>
@@ -270,13 +283,17 @@ window.filtrarMisTickets = function() {
 };
 
 /**
- * 4. LÓGICA DE INTERFAZ: Modal para leer el reporte Y LA RESPUESTA
+ * 4. LÓGICA DE INTERFAZ: Modal para leer el reporte, LA RESPUESTA Y LA IMAGEN
  */
-window.mostrarDetalleModal = function(textoCodificado, respCodificada) {
+window.mostrarDetalleModal = function(textoCodificado, respCodificada, imgCodificada = '') {
     const isDark = document.body.classList.contains('dark-mode');
     
     const textoLimpio = decodeURIComponent(textoCodificado).replace(/%27/g, "'").replace(/</g, "&lt;").replace(/>/g, "&gt;");
     const textoRespuesta = decodeURIComponent(respCodificada).replace(/%27/g, "'").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    const imgUrlOriginal = decodeURIComponent(imgCodificada);
+    
+    // Generar la versión miniatura para que cargue rápido
+    const imgUrlMiniatura = convertirAThumbnailTicket(imgUrlOriginal);
 
     let htmlModal = `
         <div class="modal-ticket-section client-msg">
@@ -287,15 +304,38 @@ window.mostrarDetalleModal = function(textoCodificado, respCodificada) {
         </div>
     `;
 
-    if (textoRespuesta.trim() !== "") {
+    // Si hay texto de respuesta o una imagen adjunta
+    if (textoRespuesta.trim() !== "" || imgUrlOriginal !== "") {
         htmlModal += `
             <div class="modal-ticket-section admin-msg">
                 <div class="modal-ticket-title">
                     <span class="material-icons-round">support_agent</span> RESPUESTA DE SOPORTE:
                 </div>
-                <div class="modal-ticket-text">${textoRespuesta}</div>
-            </div>
         `;
+        
+        // Ponemos el texto de la respuesta si lo hay
+        if (textoRespuesta.trim() !== "") {
+            htmlModal += `<div class="modal-ticket-text">${textoRespuesta}</div>`;
+        }
+        
+        // Si hay una imagen, creamos la miniatura cliqueable Y CENTRADA
+        if (imgUrlOriginal !== "") {
+            const urlSeguraParaClic = encodeURIComponent(imgUrlOriginal);
+            htmlModal += `
+                <div style="margin-top: 15px; border-top: 1px dashed var(--border-color); padding-top: 15px; text-align: center;">
+                    <span style="font-size: 0.8rem; color: var(--success); font-weight: bold; margin-bottom: 8px; display: block; text-transform: uppercase; letter-spacing: 1px;">
+                        <i class="material-icons-round" style="font-size: 1.1rem; vertical-align: middle;">image</i> Archivo Adjunto (Clic para ampliar):
+                    </span>
+                    <img src="${imgUrlMiniatura}" 
+                         style="max-width: 100%; max-height: 180px; border-radius: 8px; cursor: zoom-in; border: 1px solid var(--border-color); transition: all 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: inline-block;" 
+                         onclick="abrirImagenTicketExpandida(\`${urlSeguraParaClic}\`)" 
+                         onmouseover="this.style.transform='scale(1.03)'" 
+                         onmouseout="this.style.transform='scale(1)'">
+                </div>
+            `;
+        }
+
+        htmlModal += `</div>`;
     } else {
         htmlModal += `
             <div class="modal-ticket-section admin-msg" style="opacity: 0.8; background: rgba(245, 158, 11, 0.05); border-color: rgba(245, 158, 11, 0.2);">
@@ -316,6 +356,33 @@ window.mostrarDetalleModal = function(textoCodificado, respCodificada) {
         customClass: {
             popup: 'modal-ticket-premium'
         }
+    });
+};
+
+/**
+ * 4.5. VISOR EXPANDIDO DE IMAGEN (SIN DESCARGAS)
+ */
+window.abrirImagenTicketExpandida = function(urlCodificada) {
+    const urlLimpia = decodeURIComponent(urlCodificada);
+    
+    // 🔥 TRUCO: Transformamos el link original a un thumbnail GIGANTE (w2500) 
+    // para que el navegador lo dibuje como imagen en vez de forzar una descarga.
+    let urlAltaResolucion = urlLimpia;
+    if (urlLimpia.includes("uc?export=view&id=")) {
+        urlAltaResolucion = urlLimpia.replace("uc?export=view&id=", "thumbnail?id=") + "&sz=w2500";
+    }
+
+    const isDark = document.body.classList.contains('dark-mode');
+    
+    Swal.fire({
+        imageUrl: urlAltaResolucion,
+        imageAlt: 'Evidencia de soporte',
+        showConfirmButton: false,
+        showCloseButton: true,
+        width: 'auto',
+        padding: '10px',
+        background: isDark ? '#1e293b' : '#ffffff',
+        customClass: { popup: 'modal-ticket-premium' }
     });
 };
 
@@ -558,11 +625,20 @@ const ticketStyles = `
     .client-msg { background: var(--bg-dark); border: 1px solid var(--border-color); }
     .client-msg .modal-ticket-title { color: var(--accent-text); }
     .client-msg .modal-ticket-text { color: var(--text-main); }
+    
+    /* 🔥 FIX MODO OSCURO: Textos más blancos para lectura perfecta */
+    body.dark-mode .client-msg .modal-ticket-text { color: #f8fafc; }
 
     /* Variante: Respuesta del Admin */
     .admin-msg { background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.3); }
     .admin-msg .modal-ticket-title { color: var(--success); }
     .admin-msg .modal-ticket-text { color: var(--text-main); }
+    
+    /* 🔥 FIX MODO OSCURO: Textos más blancos para lectura perfecta */
+    body.dark-mode .admin-msg .modal-ticket-text { color: #f8fafc; }
+    
+    /* FIX MODO OSCURO: El estado "En Espera" también requiere más brillo */
+    body.dark-mode .admin-msg .modal-ticket-text[style*="italic"] { color: #cbd5e1 !important; }
     
     /* --- ESTILOS DEL BUSCADOR DE TICKETS --- */
     .faq-search-wrapper {
